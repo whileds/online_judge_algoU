@@ -2,7 +2,7 @@
 const AuthUser = require('../models/auth_user');
 const bcrypt = require("bcryptjs");
 const jwt=require("jsonwebtoken");
-const cookieParser = require("cookie-parser");
+
 const register = async (req, res) => {
   // res.send("register.. hello world")
   //get user data
@@ -52,6 +52,10 @@ const login = async (req, res) => {
   }
 
   const token = jwt.sign({id: existingUser._id, email}, process.env.JWT_SECRET, {expiresIn: "1h"});
+  res.cookie("token", token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  });
   return res.status(200).json({message: "User logged in successfully", user: existingUser, token});
 
   res.cookie("token", token, {
@@ -60,4 +64,8 @@ const login = async (req, res) => {
   });
   return res.status(200).json({message: "User logged in successfully", user: existingUser, token});
 } 
-module.exports = { login, register }
+
+const profileController = async (req, res) => {
+  res.send("profile.. hello world")
+}
+module.exports = { login, register, profileController }

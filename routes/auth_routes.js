@@ -1,7 +1,7 @@
 const express= require("express");
-const {login,register} = require("../controller/auth_controller");
+const {login,register,profileController} = require("../controller/auth_controller");
 const router = express.Router();
-
+const auth = require("../middleware/user_auth_middleware");
 
 router.get("/",(req,res) => {
   res.send("hello world")
