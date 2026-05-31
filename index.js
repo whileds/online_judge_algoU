@@ -1,7 +1,9 @@
 const express = require('express');
 const routes = require('./routes/auth_routes');
+const connectDB = require('./database/auth_db');
 const app = express();
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // app.get("/",(req,res) => {
 //   res.send("hello world")
 // });
@@ -11,7 +13,7 @@ const app = express();
 // app.get("/register",(req,res) => {
 //   res.send("register hello world")
 // });
-
+connectDB();
 app.use("/", routes);
 
 app.listen(3000, () => {
