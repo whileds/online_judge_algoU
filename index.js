@@ -1,5 +1,7 @@
 const express = require('express');
 const routes = require('./routes/auth_routes');
+const problem = require('./routes/problem_routes');
+const run = require('./routes/run_routes');
 const connectDB = require('./database/auth_db');
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -16,8 +18,9 @@ app.use(cookieParser());
 //   res.send("register hello world")
 // });
 connectDB();
-app.use("/", routes);
-
+app.use("/auth", routes);
+app.use("/problem", problem);
+app.use("/run", run);
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
