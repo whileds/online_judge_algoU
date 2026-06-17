@@ -8,9 +8,14 @@ const runcode=async (req,res)=>{
     return res.status(400).json({message: "Code is required"});
   }
   try{
+    // console.log(language);
     const filepath=generatefile(language, code);
     const output=await executeCode(filepath);
-    res.json({filepath, output});
+    res.json({
+    filepath,
+    output: output.trim()
+    });
+    return res.json({filepath, output});
   }
   catch(error){
     // res.status(500).json({message: "INTERNAL SERVER ERROR"});

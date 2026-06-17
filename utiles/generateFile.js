@@ -6,6 +6,8 @@ if(!fs.existsSync(dirCode)){
     fs.mkdirSync(dirCode);
 }
 const generatefile = (language, code) => {
+    console.log("Language:", language);
+
  const jobId=uuid();
  const filename= `${jobId}.${language}`;
  const filepath=path.join(dirCode, filename);
