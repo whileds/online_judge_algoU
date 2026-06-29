@@ -30,7 +30,7 @@ function Login() {
 
     try {
       const res = await loginUser(formData);
-
+      console.log(res.data);
       login(res.data.user);
 
       localStorage.setItem("token", res.data.token);

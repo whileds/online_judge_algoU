@@ -155,6 +155,8 @@ import Problems from "./pages/Problems";
 import ProblemDetails from "./pages/ProblemDetails";
 import Profile from "./pages/Profile";
 import AdminDashboard from "./pages/AdminDashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
   return (
@@ -170,11 +172,11 @@ function App() {
 
       <Route path="/problems" element={<Problems />} />
 
-      <Route path="/problem/:id" element={<ProblemDetails />} />
+      <Route path="/problem/:id" element={<ProtectedRoute><ProblemDetails /></ProtectedRoute>} />
 
       <Route path="/profile" element={<Profile />} />
 
-      <Route path="/admin" element={<AdminDashboard />} />
+      <Route path="/admin" element={ <AdminRoute> <AdminDashboard /> </AdminRoute> } />
 
     </Routes>
   );
